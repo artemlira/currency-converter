@@ -1,0 +1,145 @@
+body {
+   font-size: 18px;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   color: rgb(82, 80, 80);
+   box-sizing: border-box;
+}
+
+.wrapper {
+   padding: 15px;
+}
+
+.container {
+   max-width: 300px;
+   min-height: 400px;
+   margin: 50px auto;
+   border-radius: 8px;
+   box-shadow: 1px 1px 10px 1px;
+   background-color: #e4e4e4;
+
+}
+
+.header {
+   width: 100%;
+   height: 60px;
+   display: flex;
+   align-items: center;
+   border-radius: 8px 8px 0 0;
+   background: linear-gradient(#d5ebd7 15%, #a6d2a9 50%, #83c187 50%);
+
+
+}
+
+.img {
+   width: 20px;
+   height: 20px;
+   margin: 0 15px;
+}
+
+.img img {
+   max-width: 100%;
+}
+
+.select__type__payment {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   height: 50px;
+   padding: 0 8px;
+   background: url(/icons/wavy-lines-background.jpg);
+
+}
+
+.select__type__payment select {
+   width: 30%;
+   height: 30px;
+   border: none;
+   border-radius: 5px;
+   opacity: 0.7;
+   color: black;
+}
+
+
+.date {
+   width: 50%;
+   height: 30px;
+   border: 1px solid black;
+}
+
+.main {
+   padding: 10px;
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+}
+
+.currency__1,
+.currency__2 {
+   width: 100%;
+   display: grid;
+   grid-template-columns: 80% 30%;
+}
+
+input {
+   border: 1px solid rgb(156, 154, 154);
+   border-radius: 5px;
+   /* width: 85%; */
+   height: 45px;
+   margin-right: 5px;
+   background: linear-gradient(#fdfdfd 50%, #fffbd3, #fffbd1 50%);
+}
+
+.result {
+   width: 100%;
+   height: 49px;
+   /* border: 1px solid black; */
+   display: flex;
+   justify-content: end;
+   margin: 30px 0;
+}
+
+.btn_1,
+.btn_2 {
+   border: 1px solid rgb(156, 154, 154);
+   border-radius: 5px;
+   width: 25%;
+   height: 49px;
+   margin-left: 5px;
+}
+
+.btn_1 {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #fff;
+   font-size: 24px;
+   font-weight: 800;
+   background: linear-gradient(#f0747a 50%, #d3d3d1, #e20013 50%);
+}
+
+.btn_1:hover {
+   background: linear-gradient(#e20013 50%, #d3d3d1, #f0747a 50%);
+}
+
+.btn_2 {
+   background: linear-gradient(#fff 50%, #d3d3d1, #ebebeb 50%);
+}
+
+.btn_2:hover {
+   background: linear-gradient(#ebebeb 50%, #d3d3d1, #fff 50%);
+}
+
+.currency__2 select,
+.currency__1 select {
+   border: 1px solid rgb(156, 154, 154);
+   border-radius: 5px;
+   
+   height: 49px;
+   background: linear-gradient(#fdfdfd 50%, #fffbd3, #fffbd1 50%);
+}
+
+.currency__1 select:hover,
+.currency__2 select:hover,
+input:hover {
+   background: linear-gradient(#fffbd1 50%, #fffbd3, #fdfdfd 50%);
+}
