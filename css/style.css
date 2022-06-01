@@ -77,12 +77,15 @@ h3 {
 }
 
 .currency__1,
-.currency__2 {
+.currency__2,
+.copy_1,
+.copy_2 {
    display: grid;
    grid-template-columns: 70% 30%;
    gap: 10px;
 }
-.first{
+
+.first {
    width: 100%;
    display: flex;
    border: 1px solid black;
@@ -142,7 +145,9 @@ input {
 }
 
 .currency__2 select,
-.currency__1 select {
+.currency__1 select,
+.copy_1 select,
+.copy_2 select {
    border: 2px solid rgb(202, 201, 201);
    border-radius: 5px;
    width: 90%;
@@ -154,4 +159,12 @@ input {
 .currency__2 select:hover,
 input:hover {
    background: linear-gradient(#fffbd1 50%, #fffbd3, #fdfdfd 50%);
+}
+
+.reverse {
+   display: none;
+}
+
+.reverse2 {
+   display: none;
 }
