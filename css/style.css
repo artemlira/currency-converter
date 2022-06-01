@@ -47,7 +47,7 @@ h3 {
    align-items: center;
    height: 50px;
    padding: 0 8px;
-   background: url(/icons/wavy-lines-background.jpg);
+   background-image: url(/icons/vector-line.png);
 }
 
 .select__type__payment select {
@@ -64,6 +64,9 @@ h3 {
 .date {
    width: 50%;
    height: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: end;
 }
 
 .main {
@@ -78,6 +81,11 @@ h3 {
    display: grid;
    grid-template-columns: 70% 30%;
    gap: 10px;
+}
+.first{
+   width: 100%;
+   display: flex;
+   border: 1px solid black;
 }
 
 input {
