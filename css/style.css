@@ -47,7 +47,7 @@ h3 {
    align-items: center;
    height: 50px;
    padding: 0 8px;
-   background-image: url(/icons/vector-line.png);
+   background-image: url('/icons/wavy-lines-background.jpg');
 }
 
 .select__type__payment select {

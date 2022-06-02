@@ -8,6 +8,7 @@ class CurrencyConverter {
       this.globalCurrency = {};
       this.firstCurrency;
       this.secondCurrency;
+      this.payment = this.wrapper.querySelector('.select__type__payment').querySelector('option').value;
    }
 
    addTodayDate() {
@@ -19,25 +20,30 @@ class CurrencyConverter {
    }
 
    choicePayment() {
-      this.wrapper.addEventListener('input', (even) => {
+      this.wrapper.querySelector('.select__type__payment').querySelector('select').addEventListener('change', (even) => {
          let target = even.target;
-         if (target.matches('.type__payment')) {
-
-         }
+         this.payment = target.value;
+         this.choicePayment()
+         this.calc();
       });
+      if (this.payment == 'Б.Нал') {
+         this.gettingData('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11');
+      } else {
+         this.gettingData('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
+      }
    }
 
-   gettingData() {
+   gettingData(url) {
       const request = new XMLHttpRequest();
       request.addEventListener('readystatechange', () => {
          if (request.readyState === 4 && request.status === 200) {
             let json = JSON.parse(request.responseText);
             json.forEach((v) => {
                this.globalCurrency[v.ccy] = v;
-            })
+            });
          }
       });
-      request.open('GET', 'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11');
+      request.open('GET', url);
       request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       request.send();
    }
@@ -45,8 +51,7 @@ class CurrencyConverter {
    calc() {
       let sum = 0;
       let firstValue = this.main.querySelector('.currency__1').querySelector('input').value;
-      this.main.querySelector('.copy_1').querySelector('input').value = firstValue;
-      console.dir(this.main.querySelector('.copy_2').querySelector('option').value);
+      this.main.querySelector('.copy_2').querySelector('input').value = firstValue;
       if (this.firstCurrency == 'UAH') {
          sum = firstValue / this.globalCurrency[this.secondCurrency].sale;
       } else if (this.secondCurrency == 'UAH') {
@@ -55,24 +60,26 @@ class CurrencyConverter {
          sum = (firstValue * this.globalCurrency[this.firstCurrency].buy) / this.globalCurrency[this.secondCurrency].sale;
       }
       this.main.querySelector('.original').querySelector('input').value = sum.toFixed(2);
-      this.main.querySelector('.copy_2').querySelector('input').value = sum.toFixed(2);
+      this.main.querySelector('.copy_1').querySelector('input').value = sum.toFixed(2);
    }
 
    eventsFirstButton() {
       this.firstCurrency = this.main.querySelector('.currency__1').querySelector('option').value;
-      this.firstCurrency = this.main.querySelector('.copy_2').querySelector('option').value;
+      this.firstCurrency = this.main.querySelector('.copy_1').querySelector('option').value;
       this.main.querySelector('.currency__1').querySelector('select').addEventListener('change', (even) => {
          let target = even.target;
          this.firstCurrency = target.value;
+         this.choicePayment();
       });
    }
 
    eventsSecondButton() {
       this.secondCurrency = this.main.querySelector('.currency__2').querySelector('option').value;
-      this.secondCurrency = this.main.querySelector('.copy_1').querySelector('option').value;
+      this.secondCurrency = this.main.querySelector('.copy_2').querySelector('option').value;
       this.main.querySelector('.currency__2').querySelector('select').addEventListener('change', (even) => {
          let target = even.target;
          this.secondCurrency = target.value;
+         this.choicePayment();
       });
    }
 
@@ -80,6 +87,7 @@ class CurrencyConverter {
       this.main.addEventListener('click', (even) => {
          let target = even.target;
          if (target.closest('.btn_1')) {
+            this.choicePayment();
             this.calc();
          }
       })
@@ -89,7 +97,6 @@ class CurrencyConverter {
       this.main.addEventListener('click', (even) => {
          let target = even.target;
          if (target.closest('.btn_2')) {
-            console.dir(this.main.querySelector('.copy_1').querySelector('option').value);
             this.main.querySelector('.copy_2').classList.toggle('reverse');
             this.main.querySelector('.copy_1').classList.toggle('reverse');
             this.main.querySelector('.currency__1').classList.toggle('reverse2');
@@ -102,13 +109,14 @@ class CurrencyConverter {
 
 
    init() {
-      console.dir(this.globalCurrency);
+      this.choicePayment();
       this.addTodayDate();
-      this.gettingData();
+
       this.eventsFirstButton();
       this.eventsSecondButton();
       this.reverse();
       this.showResult();
+      // console.dir(this.globalCurrency);
    }
 }
 
